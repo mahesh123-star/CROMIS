@@ -36,7 +36,8 @@ export default function ProposalDetailsPage() {
   };
 
   return (
-    <div className="max-w-3xl p-6 space-y-6 text-white">
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-3xl p-6 space-y-6">
       <button
         onClick={() => router.back()}
         className="text-gray-400 hover:underline text-sm"
@@ -90,6 +91,7 @@ export default function ProposalDetailsPage() {
           Last updated:{" "}
           {new Date(proposal.updatedAt).toLocaleString()}
         </p>
+      </div>
       </div>
     </div>
   );
