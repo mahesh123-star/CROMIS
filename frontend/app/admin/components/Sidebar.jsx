@@ -104,7 +104,7 @@ const Sidebar = ({ onNavClick, activeTab, isOpen, onToggle }) => {
             </button>
           )}
         </div>
-        <nav className="flex-1 mt-4 space-y-2 px-2 overflow-y-auto">
+        <nav className="flex-1 mt-4 space-y-2 px-2 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {navItems.map((item) => {
             const isActive = activeTab === item.key;
             const Icon = item.icon;

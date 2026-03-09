@@ -68,7 +68,7 @@ export default function StudentPage() {
 
       <div className="flex-1 flex flex-col">
         <Header onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 p-6 overflow-y-auto pb-20 md:pb-6">
+        <main className="flex-1 p-6 overflow-y-auto pb-20 md:pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {renderContent()}
         </main>
       </div>

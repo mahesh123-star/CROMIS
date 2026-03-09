@@ -702,7 +702,7 @@ const BookingList = ({
 
       {/* Rejection Modal (Story 2) */}
       {rejectModal.show && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black p-4">
           <div className="bg-gray-900 border border-gray-700 rounded-2xl p-6 w-full max-w-md shadow-2xl animate-in zoom-in-95 duration-200">
             <h3 className="text-xl font-bold mb-2">Reject Proposal</h3>
             <p className="text-sm text-gray-400 mb-6">Please provide a reason for rejection (min 20 chars).</p>
@@ -733,21 +733,21 @@ const BookingList = ({
 
       {/* Details & Conflict Modal (Story 5, 13, 15) */}
       {detailsModal.show && detailsModal.booking && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 text-white">
-          <div className="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
-              <h3 className="text-xl font-bold">Proposal Details</h3>
-              <button onClick={() => setDetailsModal({ show: false, booking: null, conflicts: [], series: [] })} className="text-gray-400 hover:text-white transition-colors">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black p-4 text-white">
+          <div className="bg-black border border-gray-800 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-black">
+              <h3 className="text-xl font-bold text-white">Proposal Details</h3>
+              <button onClick={() => setDetailsModal({ show: false, booking: null, conflicts: [], series: [] })} className="text-gray-500 hover:text-white transition-colors">
                 <XCircle className="w-6 h-6" />
               </button>
             </div>
             <div className="overflow-y-auto p-6 space-y-8 flex-1 custom-scrollbar">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-blue-400">Basic Information</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-white border-l-2 border-white pl-2">Basic Information</h4>
                   <div className="space-y-2">
-                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Requester:</span> {detailsModal.booking.requester?.name}</p>
-                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Resource:</span> {detailsModal.booking.resource?.name}</p>
+                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Requester:</span> <span className="text-white">{detailsModal.booking.requester?.name}</span></p>
+                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Resource:</span> <span className="text-white">{detailsModal.booking.resource?.name}</span></p>
                     <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Status:</span> 
                       <span className={`ml-2 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${getStatusColor(detailsModal.booking.status)}`}>
                         {detailsModal.booking.status}
@@ -756,32 +756,32 @@ const BookingList = ({
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-blue-400">Schedule</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-white border-l-2 border-white pl-2">Schedule</h4>
                   <div className="space-y-2">
-                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Date:</span> {detailsModal.booking.date}</p>
-                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Time:</span> {detailsModal.booking.startTime} – {detailsModal.booking.endTime}</p>
+                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Date:</span> <span className="text-white">{detailsModal.booking.date}</span></p>
+                    <p className="text-sm"><span className="text-gray-500 font-medium mr-2">Time:</span> <span className="text-white">{detailsModal.booking.startTime} – {detailsModal.booking.endTime}</span></p>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-blue-400">Purpose of Booking</h4>
-                <div className="bg-black/50 border border-gray-800 rounded-xl p-4 text-sm leading-relaxed text-gray-300">
+                <h4 className="text-xs font-bold uppercase tracking-widest text-white border-l-2 border-white pl-2">Purpose of Booking</h4>
+                <div className="bg-zinc-900 border border-gray-800 rounded-xl p-4 text-sm leading-relaxed text-white">
                   {detailsModal.booking.purpose}
                 </div>
               </div>
 
               {/* Attachments (Story 13) */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-blue-400">Attachments ({detailsModal.booking.attachments?.length || 0})</h4>
+                <h4 className="text-xs font-bold uppercase tracking-widest text-white border-l-2 border-white pl-2">Attachments ({detailsModal.booking.attachments?.length || 0})</h4>
                 <div className="flex flex-wrap gap-4">
                   {detailsModal.booking.attachments?.length > 0 ? (
                     detailsModal.booking.attachments.map((file, idx) => (
-                      <a key={idx} href={`http://localhost:5000/${file}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-gray-850 hover:bg-gray-800 border border-gray-700 rounded-xl transition-all group">
-                        <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                      <a key={idx} href={`http://localhost:5000/${file}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-zinc-900 hover:bg-zinc-800 border border-gray-800 rounded-xl transition-all group">
+                        <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors">
                           <FileText className="w-5 h-5" />
                         </div>
-                        <span className="text-xs text-gray-300">Document {idx + 1}</span>
+                        <span className="text-xs text-white">Document {idx + 1}</span>
                       </a>
                     ))
                   ) : (
@@ -793,15 +793,15 @@ const BookingList = ({
               {/* Multi-Day Series (Requirement Enhancement) */}
               {detailsModal.booking.groupId && (
                 <div className="space-y-4 border-t border-gray-800 pt-8">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-blue-400">Multi-Day Series ({detailsModal.series.length})</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-white border-l-2 border-white pl-2">Multi-Day Series ({detailsModal.series.length})</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {detailsModal.series.map(s => (
-                      <div key={s._id} className={`p-3 rounded-xl border ${s._id === detailsModal.booking._id ? 'bg-blue-500/10 border-blue-500/30' : 'bg-gray-850 border-gray-800'}`}>
-                        <p className="text-xs font-bold">{new Date(s.date).toLocaleDateString()}</p>
+                      <div key={s._id} className={`p-3 rounded-xl border ${s._id === detailsModal.booking._id ? 'bg-white/10 border-white/30' : 'bg-zinc-900 border-gray-800'}`}>
+                        <p className="text-xs font-bold text-white">{new Date(s.date).toLocaleDateString()}</p>
                         <p className="text-[10px] text-gray-400">{s.startTime} – {s.endTime}</p>
                         <div className="mt-2 flex items-center justify-between">
                            <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold uppercase ${getStatusColor(s.status)}`}>{s.status}</span>
-                           {s._id === detailsModal.booking._id && <span className="text-[8px] text-blue-400 font-bold uppercase">Current View</span>}
+                           {s._id === detailsModal.booking._id && <span className="text-[8px] text-white font-bold uppercase">Current View</span>}
                         </div>
                       </div>
                     ))}
@@ -831,14 +831,14 @@ const BookingList = ({
                 )}
               </div>
             </div>
-            <div className="p-6 bg-gray-850 border-t border-gray-800 flex gap-4">
+            <div className="p-6 bg-black border-t border-gray-800 flex gap-4">
               {detailsModal.booking.status === 'pending' && isAdmin && (
                 <>
-                  <button onClick={() => { handleApprove(detailsModal.booking._id); setDetailsModal({show:false, booking:null, conflicts:[], series:[]}); }} className="flex-1 bg-green-600 hover:bg-green-700 py-3 rounded-xl font-bold transition-colors">Approve Slot</button>
-                  <button onClick={() => { handleReject(detailsModal.booking._id); setDetailsModal({show:false, booking:null, conflicts:[], series:[]}); }} className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-xl font-bold transition-colors">Reject Request</button>
+                  <button onClick={() => { handleApprove(detailsModal.booking._id); setDetailsModal({show:false, booking:null, conflicts:[], series:[]}); }} className="flex-1 bg-white text-black hover:bg-gray-200 py-3 rounded-xl font-bold transition-colors">Approve Slot</button>
+                  <button onClick={() => { handleReject(detailsModal.booking._id); setDetailsModal({show:false, booking:null, conflicts:[], series:[]}); }} className="flex-1 border border-white text-white hover:bg-white/10 py-3 rounded-xl font-bold transition-colors">Reject Request</button>
                 </>
               )}
-              <button onClick={() => setDetailsModal({ show: false, booking: null, conflicts: [], series: [] })} className="px-8 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-bold transition-colors">Close</button>
+              <button onClick={() => setDetailsModal({ show: false, booking: null, conflicts: [], series: [] })} className="px-8 py-3 bg-zinc-900 text-white border border-gray-800 hover:bg-zinc-800 rounded-xl font-bold transition-colors">Close</button>
             </div>
           </div>
         </div>
@@ -846,7 +846,7 @@ const BookingList = ({
 
       {/* Admin Edit Modal (Story 8) */}
       {editModal.show && editModal.booking && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 text-white">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black p-4 text-white">
           <div className="bg-gray-900 border border-gray-700 rounded-2xl p-6 w-full max-w-md shadow-2xl animate-in zoom-in-95 duration-200">
             <h3 className="text-xl font-bold mb-6">Modify Proposal</h3>
             
